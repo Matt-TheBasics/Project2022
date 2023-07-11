@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ForaDCC">
+  <DataContextMoniker Name="/ForaDCCDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1c75fc12-2af4-4076-935b-929637cf3c16" absoluteBounds="0.5, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ForaDCCDataContext/Campaign" />
+      <nestedChildShapes>
+        <elementListCompartment Id="371a3379-4121-49ac-96ad-54cf79605e14" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e5aa57bd-bdec-448d-ac31-0369a6d1f910" absoluteBounds="5.5, 0.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ForaDCCDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d459340d-269b-45c4-a29d-8fe6167f6478" absoluteBounds="5.515, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a442bfbf-3129-418a-8879-a9ee9e2ece84" absoluteBounds="0.5, 2.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ForaDCCDataContext/Schedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d722662-0a41-46f6-9145-213b40badaf4" absoluteBounds="0.51500000000000012, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ef0b50c-574a-40dd-b155-d6459b090668" absoluteBounds="5, 3.25, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/ForaDCCDataContext/Image" />
+      <nestedChildShapes>
+        <elementListCompartment Id="29201158-68d2-4d9d-b483-557dab83fbf4" absoluteBounds="5.0150000000000006, 3.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d24a4cc2-5e18-46d3-a362-0428dd6501f2" absoluteBounds="3, 0.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ForaDCCDataContext/Donation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be3752d2-1734-4e06-86cd-38949c506453" absoluteBounds="3.015, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

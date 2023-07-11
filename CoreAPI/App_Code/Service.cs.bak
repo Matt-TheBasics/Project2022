@@ -1,0 +1,335 @@
+﻿using CoreAppAPI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+// NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service" in code, svc and config file together.
+public class Service : IService
+{                        
+    ForaDCCDataContext db = new ForaDCCDataContext();
+
+    //donor functions
+
+    //checking is donor already exist in database before registering them
+    public bool Registered(string email, string password)
+    {
+        var user = (from u in db.Users where u.Email.Equals(email) && u.Password.Equals(password) select u).FirstOrDefault();
+
+        //return true if donor exist and false if not available
+        if (user != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //register the donor
+    public int Register(string name, string surname, string email, string address, string password, string usertype, string contact)
+    {
+            var newuser = new User
+            {
+                Name = name,
+                Surname = surname,
+                Email = email,
+                Adress = address,
+                Password =password,
+                Usertype = usertype,
+                Contact = contact
+            };
+
+            db.Users.InsertOnSubmit(newuser);
+            try
+            {
+                db.SubmitChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                e.GetBaseException();
+                return -1;
+            } 
+    }
+
+
+    //edit user information
+    public bool editUser(int userid, string name, string surname, string email, string address, string password, string usertype, string contact)
+    {
+        dynamic user = (from e in db.Users
+                        where e.UserID.Equals(userid)
+                        select e).FirstOrDefault();
+        if (user != null)
+        {
+            user.Name = name;
+            user.Surname = surname;
+            user.Contact = contact;
+            user.Email = email;
+            user.Address = address;
+            user.Usertype = usertype;
+            user.Password = password;
+
+            try
+            {
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+    //donor login
+    public int Login(string email, string password)
+    {
+        //create a new variable and store fecthed user in db
+        var donor = (from p in db.Users
+                    where p.Email.Equals(email) && p.Password.Equals(password)
+                    select p).FirstOrDefault();
+
+        //if user not in db return -1 if in db return userid
+        if (donor == null)
+        {
+            return -1;
+        }
+        else
+        {
+            return donor.UserID;
+        }
+    }
+
+        public User getUser(int ID)
+        {
+            var user = (from u in db.Users
+                        where u.UserID.Equals(ID)
+                        select u).FirstOrDefault();
+            return user;
+        }
+
+	
+
+
+    //donor donations viewing
+    public List<Donation> getDonorDonations(int DonorID)
+    {
+        List<Donation> list = new List<Donation>();
+
+        dynamic items = (from a in db.Donations where a.DonorID.Equals(DonorID) select a);
+
+        foreach (Donation ep in items)
+        {
+            list.Add(ep);
+        }
+
+        return list;
+    }
+
+
+
+
+    public bool AddCampaign(string name, string description, string datefrom, string dateto,string fundraiser, string location)
+    {
+        bool blnAddCampaign = false;
+
+        //adding a new Campaign
+        var newCampaign = new Campaign
+        {
+            Name = name,
+            Description = description,
+            Date_from = datefrom,
+            Date_to = dateto,
+            Fundraiser = fundraiser,
+            Location = location
+        };
+
+
+        db.Campaigns.InsertOnSubmit(newCampaign);
+        try
+        {
+            db.SubmitChanges();
+            blnAddCampaign = true;
+        }
+        catch (Exception ex)
+        {
+            ex.GetBaseException();
+            blnAddCampaign = false;
+        }
+
+        return blnAddCampaign;
+    }
+
+
+    public List<Campaign> getAllCampaigns()
+    {
+        List<Campaign> CampaignList = new List<Campaign>();
+        dynamic allCampaign = (from x in db.Campaigns
+                               select x);
+
+        foreach (Campaign c in allCampaign)
+        {
+            CampaignList.Add(c);
+        }
+
+
+        return CampaignList;
+    }
+
+    public List<Donation> getAllDonations()
+    {
+        List<Donation> DonationList = new List<Donation>();
+
+        dynamic allDonations = (from x in db.Donations
+                               select x);
+
+        foreach (Donation d in allDonations)
+        {
+            DonationList.Add(d);
+        }
+
+
+        return DonationList;
+    }
+
+    public List<User> getAllAdmin()
+    {
+        List<User> list = new List<User>();
+        dynamic emp = (from ep in db.Users where ep.Usertype.Equals("ADMIN")select ep);
+
+        foreach(User ep in emp)
+        {
+            list.Add(ep);
+        }
+
+        return list;
+    }
+
+
+    public List<User> getAllDonors()
+    {
+        List<User> list = new List<User>();
+
+        dynamic emp = (from ep in db.Users where ep.Usertype.Equals("DONOR") select ep);
+
+        foreach (User ep in emp)
+        {
+            list.Add(ep);
+        }
+
+        return list;
+    }
+
+
+    public bool AddDonation(int donorid, string type, string pickup, int ntimes, string branch, string date)
+    {
+        bool blnAddDonation = false;
+
+        var newdonation = new Donation
+        {
+            DonorID = donorid,
+            Type = type,
+            Pickup = pickup,
+            n_Times = ntimes,
+            Branch = branch,
+            Date = date
+        };
+
+        db.Donations.InsertOnSubmit(newdonation);
+        try
+        {
+            db.SubmitChanges();
+            blnAddDonation = true;
+        }
+        catch (Exception ex)
+        {
+            ex.GetBaseException();
+            blnAddDonation = false;
+        }
+
+        return blnAddDonation;
+    }
+	
+	 public bool editDonation(ind donationid,int donorid, string type, string pickup, string ntimes, string branch, string date)
+    {
+        dynamic donation = (from e in db.Donations
+                        where e.DonationID.Equals(donationid)
+                        select e).FirstOrDefault();
+        if (donation != null)
+        {
+            donation.DonorID = donorid;
+            donation.Type = type;
+            donation.Pickup = pickup;
+            donation.n_Times = ntimes;
+            donation.Branch = branch;
+            donation.Date = date;
+           
+            try
+            {
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+	
+	public  bool editCampaign(ind campaignid,string name, string description, string datefrom, string dateto, string fundraiser, string location)
+	{
+		
+		dynamic campaign = (from e in db.Campaigns
+                        where e.CampaignID.Equals(campaignid)
+                        select e).FirstOrDefault();
+        if (campaign != null)
+        {
+            campaign.DonorID = donorid;
+            campaign.Type = type;
+            campaign.Pickup = pickup;
+            campaign.n_Times = ntimes;
+            campaign.Branch = branch;
+            campaign.Date = date;
+           
+            try
+            {
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+		
+		
+	}
+
+
+
+}

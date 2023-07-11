@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService" in both code and config file together.
+
+namespace CoreAppAPI
+{
+     [ServiceContract]
+
+    public interface IService
+    {
+
+
+        //Do related funtions
+
+        [OperationContract]
+        bool Registered(string email, string password);
+
+        [OperationContract]
+        int Register(string name, string surname, string email, string address, string password, string usertype, string contact);
+
+        [OperationContract]
+        int Login(String email, String password);
+
+
+        [OperationContract]
+        bool editUser(int userid, string name, string surname, string email, string address, string password, string usertype, string contact);
+
+
+        [OperationContract]
+        List<Donation> getDonorDonations(int DonorID);
+
+
+        [OperationContract]
+        User getUser(int UserID);
+
+
+        //donation ralated functions
+        [OperationContract]
+        bool AddDonation(int donorid, string type, string pickup, int ntimes, string branch,string date);
+		
+		
+        [OperationContract]
+        bool editDonation(ind donationid,int donorid, string type, string pickup, string entimes, string branch, string date);
+
+		
+
+        [OperationContract]
+        List<Donation> getAllDonations();  
+
+        //employee related functions
+
+       
+
+        [OperationContract]
+        List<User> getAllAdmin();
+
+        [OperationContract]
+        List<User> getAllDonors();
+             
+
+
+        //campaign related functions
+
+        [OperationContract]
+        bool AddCampaign(string name, string description, string datefrom, string dateto, string fundraiser, string location);
+
+		[OperationContract]		
+        bool editCampaign(ind campaignid,int donorid, string type, string pickup, string entimes, string branch, string date);
+     
+        [OperationContract]
+        List<Campaign> getAllCampaigns();
+
+    }
+
+
+    }
+
