@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:54298/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:54298/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:54298/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_Registered_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registered" />
+  </wsdl:message>
+  <wsdl:message name="IService_Registered_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IService_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getDonorDonations_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDonorDonations" />
+  </wsdl:message>
+  <wsdl:message name="IService_getDonorDonations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDonorDonationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllAnimals_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllAnimals" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllAnimals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllAnimalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllEmployees" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllCampaigns_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCampaigns" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllCampaigns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCampaignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllDonations_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllDonations" />
+  </wsdl:message>
+  <wsdl:message name="IService_getAllDonations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllDonationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddAnimal_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAnimal" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddAnimal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAnimalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCampaign" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCampaignResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="Registered">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Registered" message="tns:IService_Registered_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RegisteredResponse" message="tns:IService_Registered_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Register" message="tns:IService_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RegisterResponse" message="tns:IService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Login" message="tns:IService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LoginResponse" message="tns:IService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDonorDonations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getDonorDonations" message="tns:IService_getDonorDonations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getDonorDonationsResponse" message="tns:IService_getDonorDonations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllAnimals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getAllAnimals" message="tns:IService_getAllAnimals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getAllAnimalsResponse" message="tns:IService_getAllAnimals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getAllEmployees" message="tns:IService_getAllEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getAllEmployeesResponse" message="tns:IService_getAllEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllCampaigns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getAllCampaigns" message="tns:IService_getAllCampaigns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getAllCampaignsResponse" message="tns:IService_getAllCampaigns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllDonations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getAllDonations" message="tns:IService_getAllDonations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getAllDonationsResponse" message="tns:IService_getAllDonations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddEmployee" message="tns:IService_AddEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddEmployeeResponse" message="tns:IService_AddEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAnimal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddAnimal" message="tns:IService_AddAnimal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddAnimalResponse" message="tns:IService_AddAnimal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCampaign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddCampaign" message="tns:IService_AddCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddCampaignResponse" message="tns:IService_AddCampaign_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Registered">
+      <soap:operation soapAction="http://tempuri.org/IService/Registered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/IService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDonorDonations">
+      <soap:operation soapAction="http://tempuri.org/IService/getDonorDonations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllAnimals">
+      <soap:operation soapAction="http://tempuri.org/IService/getAllAnimals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllEmployees">
+      <soap:operation soapAction="http://tempuri.org/IService/getAllEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCampaigns">
+      <soap:operation soapAction="http://tempuri.org/IService/getAllCampaigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDonations">
+      <soap:operation soapAction="http://tempuri.org/IService/getAllDonations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmployee">
+      <soap:operation soapAction="http://tempuri.org/IService/AddEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAnimal">
+      <soap:operation soapAction="http://tempuri.org/IService/AddAnimal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCampaign">
+      <soap:operation soapAction="http://tempuri.org/IService/AddCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost:54298/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
